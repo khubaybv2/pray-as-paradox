@@ -2,41 +2,239 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <title>প্রে অ্যাজ প্যারাডক্স | Pray as Paradox</title>
-    <link rel="stylesheet" href="/styles.css">
+    <title>রমজান সময়সূচী | Ramadan Timetable</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        :root {
+            --islamic-green: #009688;
+            --gold: #FFD700;
+        }
+
         @font-face {
             font-family: 'Kalpurush';
             src: url('/assets/fonts/Kalpurush.ttf') format('truetype');
         }
-        @font-face {
-            font-family: 'Amiri';
-            src: url('/assets/fonts/Amiri-Regular.ttf') format('truetype');
+
+        body {
+            font-family: 'Kalpurush', Arial;
+            background: linear-gradient(45deg, #0a3d62, #079992);
+            color: white;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 30px;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background: url('islamic-pattern.png') repeat;
+            opacity: 0.1;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .prayer-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+        }
+
+        .time-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            margin: 10px 0;
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            font-size: 1.1em;
+        }
+
+        .quran-section {
+            text-align: center;
+            font-style: italic;
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid var(--gold);
+            border-radius: 15px;
+        }
+
+        .animation-container {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .mosque-animation {
+            width: 100%;
+            height: 100%;
+            background: url('mosque-silhouette.png') repeat-x;
+            animation: moveMosque 20s linear infinite;
+        }
+
+        @keyframes moveMosque {
+            from { background-position: 0 0; }
+            to { background-position: 100% 0; }
+        }
+
+        .moon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle at 30% 30%, #fff, #f0f0f0);
+            border-radius: 50%;
+            box-shadow: 0 0 30px var(--gold);
+            animation: moonGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes moonGlow {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
     </style>
 </head>
 <body>
+    <div class="moon"></div>
+    
     <div class="container">
-        <h1>নামাজের সময়সূচী</h1>
-
-        <!-- তারিখ সিলেক্টর -->
-        <div class="date-picker">
+        <div class="header">
+            <h1>রমজান ১৪৪৫ হিজরি সময়সূচী</h1>
             <input type="date" id="date-selector" class="custom-date-input">
         </div>
 
-        <!-- নামাজের সময় -->
-        <div class="prayer-times-box" id="prayer-times"></div>
+        <div class="main-content">
+            <div class="prayer-box">
+                <div class="time-item" style="color: var(--gold);">
+                    <span>সেহ্রি শেষ:</span>
+                    <span id="sehri-time">--:--</span>
+                </div>
+                
+                <!-- Namaz Times -->
+                <div class="time-item">
+                    <span>ফজর</span>
+                    <span id="fajr">--:--</span>
+                </div>
+                <div class="time-item">
+                    <span>যোহর</span>
+                    <span id="dhuhr">--:--</span>
+                </div>
+                <div class="time-item">
+                    <span>আসর</span>
+                    <span id="asr">--:--</span>
+                </div>
+                <div class="time-item">
+                    <span>মাগরিব</span>
+                    <span id="maghrib">--:--</span>
+                </div>
+                <div class="time-item">
+                    <span>ইশা</span>
+                    <span id="isha">--:--</span>
+                </div>
+
+                <div class="time-item" style="color: var(--gold);">
+                    <span>ইফতার:</span>
+                    <span id="iftar-time">--:--</span>
+                </div>
+            </div>
+
+            <div class="quran-section">
+                <h2>কুরআনের আয়াত</h2>
+                <p id="quran-ayat">"রমজান মাসই হল সে মাস, যাতে নাজিল করা হয়েছে কুরআন..." (সূরা বাকারা: ১৮৫)</p>
+                <h3>হাদিস</h3>
+                <p id="hadith">"তোমাদের মধ্যে যে ব্যক্তি রমজান পাবে সে যেন রোজা রাখে।" (বুখারী)</p>
+            </div>
+        </div>
     </div>
 
-    <!-- ক্রেডিট ফুটার -->
-    <footer>
-        <a href="https://khubaybhossain.blogspot.com/" target="_blank">
-            Powered ⚡ by Khubayb Hossain
-        </a>
-    </footer>
+    <div class="animation-container">
+        <div class="mosque-animation"></div>
+    </div>
 
-    <!-- স্ক্রিপ্ট -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-    <script src="/assets/scripts/prayerTimes.js"></script>
+    <script>
+        // Random Quran Ayats and Hadiths
+        const quranAyats = [
+            {text: '“নিশ্চয়ই সিয়াম আমার জন্যই, তাই আমি নিজেই এর প্রতিদান দেব...” (হাদিসে কুদসি)', ref: 'বুখারী ১৮৯৪'},
+            {text: '“রোজাদারের মুখের গন্ধ আল্লাহর নিকট মিস্কের সুগন্ধির চেয়েও প্রিয়।”', ref: 'বুখারী ১৮৯৪'}
+        ];
+
+        const hadiths = [
+            '“যে ব্যক্তি ঈমানের সাথে সওয়াবের আশায় রমজানের রোজা রাখবে, তার পূর্বের সব গুনাহ মাফ করে দেওয়া হবে।” (বুখারী)',
+            '“রোজাদারের জন্য দুটি আনন্দ: একটি ইফতারের সময়, অন্যটি তার রবের সাথে সাক্ষাতের সময়।” (বুখারী)'
+        ];
+
+        // Random Islamic Design Elements
+        const designElements = {
+            patterns: ['islamic-pattern-1.png', 'islamic-pattern-2.png'],
+            mosques: ['mosque-1.png', 'mosque-2.png']
+        };
+
+        // Time Converter to AM/PM
+        function convertTo12Hour(time24) {
+            let [hours, minutes] = time24.split(':');
+            let period = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12 || 12;
+            return `${hours}:${minutes} ${period}`;
+        }
+
+        // Update Display Function
+        function updateDisplay(timings) {
+            document.getElementById('fajr').textContent = convertTo12Hour(timings.Fajr);
+            document.getElementById('dhuhr').textContent = convertTo12Hour(timings.Dhuhr);
+            document.getElementById('asr').textContent = convertTo12Hour(timings.Asr);
+            document.getElementById('maghrib').textContent = convertTo12Hour(timings.Maghrib);
+            document.getElementById('isha').textContent = convertTo12Hour(timings.Isha);
+            
+            // Calculate Sehri & Iftar
+            document.getElementById('iftar-time').textContent = convertTo12Hour(timings.Maghrib);
+            document.getElementById('sehri-time').textContent = convertTo12Hour(timings.Fajr);
+        }
+
+        // Random Islamic Content
+        function updateIslamicContent() {
+            const randomAyat = quranAyats[Math.floor(Math.random() * quranAyats.length)];
+            const randomHadith = hadiths[Math.floor(Math.random() * hadiths.length)];
+            
+            document.getElementById('quran-ayat').textContent = randomAyat.text;
+            document.getElementById('hadith').textContent = randomHadith;
+        }
+
+        // Initial Load
+        updateIslamicContent();
+        setInterval(updateIslamicContent, 10000); // Change every 10 seconds
+
+        // Add Mosque Animation
+        function animateMosque() {
+            const mosques = designElements.mosques;
+            const randomMosque = mosques[Math.floor(Math.random() * mosques.length)];
+            document.querySelector('.mosque-animation').style.backgroundImage = `url('${randomMosque}')`;
+        }
+        animateMosque();
+    </script>
 </body>
 </html>
