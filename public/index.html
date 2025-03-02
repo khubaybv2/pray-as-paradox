@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <title>প্রে অ্যাজ প্যারাডক্স | Pray as Paradox</title>
+  <link rel="stylesheet" href="/styles.css">
+  <!-- Google Fonts (Bengali + Arabic Fallback) -->
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri&family=Amiri&display=swap" rel="stylesheet">
+  <!-- Self-hosted Fonts -->
+  <style>
+    @font-face {
+      font-family: 'Kalpurush';
+      src: url('/assets/fonts/Kalpurush.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'Amiri';
+      src: url('/assets/fonts/Amiri-Regular.ttf') format('truetype');
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>নামাজের সময়সূচী</h1>
+    
+    <!-- Bengali Calendar -->
+    <div class="calendar" id="bangla-date"></div>
+    
+    <!-- Hijri Calendar -->
+    <div class="calendar" id="hijri-date"></div>
+    
+    <!-- Gregorian Calendar -->
+    <div class="calendar" id="gregorian-date"></div>
+  </div>
+
+  <!-- Footer Credit -->
+  <footer>
+    <a href="https://khubaybhossain.blogspot.com/" target="_blank">
+      Powered ⚡ by Khubayb Hossain
+    </a>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-hijri/2.2.0/moment-hijri.min.js"></script>
+  <script src="/assets/scripts/calendars.js"></script>
+  <script src="/assets/scripts/prayerTimes.js"></script>
+</body>
+</html>
