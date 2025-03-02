@@ -1,0 +1,14 @@
+{
+  "name": "pray-as-paradox",
+  "version": "1.0.0",
+  "description": "Prayer time and calendar app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "moment": "^2.29.4",
+    "moment-hijri": "^2.2.0"
+  }
+}
