@@ -1,40 +1,56 @@
 body {
-  font-family: 'Kalpurush', 'Hind Siliguri', sans-serif;
-  margin: 20px;
-  background: #f5f5f5;
+    font-family: 'Kalpurush', Arial, sans-serif;
+    margin: 20px;
+    background: #f0f4f8;
 }
 
 .container {
-  max-width: 800px;
-  margin: 0 auto;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 h1 {
-  text-align: center;
-  color: #2c3e50;
+    text-align: center;
+    color: #2c3e50;
 }
 
-.calendar {
-  background: white;
-  padding: 15px;
-  margin: 10px 0;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+.date-picker {
+    text-align: center;
+    margin: 20px 0;
 }
 
-#hijri-date {
-  font-family: 'Amiri', sans-serif;
-  font-size: 1.1em;
-  text-align: right;
+.custom-date-input {
+    padding: 10px;
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    font-family: 'Kalpurush', sans-serif;
+    width: 200px;
+}
+
+.prayer-times-box {
+    background: white;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.prayer-time {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin: 5px 0;
+    background: #f8f9fa;
+    border-radius: 5px;
 }
 
 footer {
-  text-align: center;
-  margin-top: 30px;
+    text-align: center;
+    margin-top: 30px;
 }
 
 footer a {
-  font-family: Arial, sans-serif;
-  color: #3498db;
-  text-decoration: none;
+    font-family: Arial, sans-serif;
+    color: #3498db;
+    text-decoration: none;
 }
